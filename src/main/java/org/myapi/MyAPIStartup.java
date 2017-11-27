@@ -7,16 +7,24 @@ import org.myapi.models.DatabaseConfig;
 import org.myapi.models.Request;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MyAPIStartup {
     private HashMap<String, Command> call = new HashMap<String, Command>();
     private HashMap<String, DatabaseConfig> databases = new HashMap<String, DatabaseConfig>();
 
-    public QueryResult call(String httpMethod, String path, HashMap<String, String> params) {
-        Command command = call.get(httpMethod + ":" + path);
+    public QueryResult call(String httpMethod, String path, Map<String, String> params) {
+        String pathIdentifier = getPathIdentifier(httpMethod, path);
+        Command command = call.get(pathIdentifier);
+        if(command == null){
+            throw new RuntimeException(String.format("No command found for: %s", pathIdentifier));
+        }
         return command.call(params);
+    }
+
+    private String getPathIdentifier(String httpMethod, String path) {
+        return httpMethod + ":" + path;
     }
 
     public void loadJsonFromFile(String configFile) throws IOException {
@@ -36,7 +44,7 @@ public class MyAPIStartup {
         Request request = connectionDetails.getRequest();
 
         if(request != null){
-            call.put(request.getMethod() + ":" + request.getPath(),command);
+            call.put(getPathIdentifier(request.getMethod(), request.getPath()),command);
         }
     }
 

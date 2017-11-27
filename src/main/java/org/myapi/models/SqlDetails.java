@@ -8,8 +8,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.awt.SystemColor.text;
-
 public class SqlDetails {
     private String database;
     private String query;
@@ -22,8 +20,7 @@ public class SqlDetails {
         this.database = database;
     }
 
-
-    public Query createSqlFor(HashMap<String, String> params) {
+    public Query createSqlFor() {
         String regex = "(\\$\\{.*?\\})";
 
         Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.DOTALL);

@@ -1,0 +1,10 @@
+{
+  "database" : {
+    "name" : "mysql",
+    "host" : "localhost:3306",
+    "database" : "talks",
+    "username" : "root",
+    "password" : "",
+    "driver" : "jdbc:mysql"
+  }
+}

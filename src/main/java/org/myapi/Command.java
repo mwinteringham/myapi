@@ -18,7 +18,7 @@ public class Command {
         this.databases = databases;
     }
 
-    public QueryResult call(HashMap<String, String> params) {
+    public QueryResult call(Map<String, String> params) {
         DatabaseConfig database = getDatabaseFor(config.getSql().getDatabase());
 
         Query sql = null;
@@ -26,7 +26,7 @@ public class Command {
         try {
             Connection connection = DriverManager.getConnection(database.getUrl(), database.getUsername(), database.getPassword());
 
-            sql = config.getSql().createSqlFor(params);
+            sql = config.getSql().createSqlFor();
 
             System.out.println("Prepared SQL: " + sql.getQueryText());
 
