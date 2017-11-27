@@ -1,1 +1,1 @@
-QueryResult{resultSet=null, updateCount=1}
+QueryResult{ updateCount=1}

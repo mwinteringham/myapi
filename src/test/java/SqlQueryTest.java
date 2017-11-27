@@ -16,7 +16,17 @@ public class SqlQueryTest{
             put("title", "Cool API Demo!");
         }};
 
-        verifyQuery("addtable.json", "POST", "/talk", parameters);
+        verifyQuery("add_table.json", "POST", "/talk", parameters);
+    }
+
+    @Test
+    public void testMultipleParameters() throws IOException {
+        HashMap<String,String> parameters = new HashMap<String, String>(){{
+            put("contains", "a");
+            put("excludes", "talk");
+        }};
+
+        verifyQuery("query_table.json", "GET", "/talk", parameters);
     }
 
     private void verifyQuery(String configFile, String httpMethod, String path, HashMap<String, String> params) throws IOException {

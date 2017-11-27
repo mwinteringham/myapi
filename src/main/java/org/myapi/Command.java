@@ -19,7 +19,6 @@ public class Command {
     }
 
     public QueryResult call(HashMap<String, String> params) {
-//        Create DB connection
         DatabaseConfig database = getDatabaseFor(config.getSql().getDatabase());
 
         Query sql = null;
@@ -27,15 +26,23 @@ public class Command {
         try {
             Connection connection = DriverManager.getConnection(database.getUrl(), database.getUsername(), database.getPassword());
 
-//        Mix params in SQL
             sql = config.getSql().createSqlFor(params);
+
+            System.out.println("Prepared SQL: " + sql.getQueryText());
+
             PreparedStatement preparedStatement = connection.prepareStatement(sql.getQueryText());
-            preparedStatement.setString(1, params.get(sql.getParameterNames()[0]));
-            boolean returnResultSet = preparedStatement.execute();
+
+            String[] parameters = sql.getParameterNames();
+
+            for(int i = 0; i < parameters.length; i++){
+                System.out.println("Parameter name: " + parameters[i]);
+                preparedStatement.setString(i + 1, params.get(parameters[i]));
+            }
+
+            preparedStatement.execute();
 
             return new QueryResult(preparedStatement.getResultSet(), preparedStatement.getUpdateCount());
         } catch (SQLException e) {
-//            Call SQL
             System.out.println("SQL Error: " + sql);
             ObjectUtils.throwAsError(e);
         }

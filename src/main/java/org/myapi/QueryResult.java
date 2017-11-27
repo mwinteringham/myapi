@@ -1,6 +1,7 @@
 package org.myapi;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class QueryResult {
 
@@ -16,8 +17,19 @@ public class QueryResult {
     @Override
     public String toString() {
         return "QueryResult{" +
-                "resultSet=" + resultSet +
-                ", updateCount=" + updateCount +
-                '}';
+                " updateCount=" + updateCount +
+                '}' + printResultSet();
+    }
+
+    private String printResultSet() {
+        if(resultSet == null){
+            return "";
+        }
+
+        try {
+            return "\n" + com.spun.util.database.ResultSetWriter.toString(resultSet);
+        } catch (SQLException e) {
+            return e.getMessage();
+        }
     }
 }
