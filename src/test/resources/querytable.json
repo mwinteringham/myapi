@@ -1,0 +1,12 @@
+{
+  "request" : {
+    "method" : "GET",
+    "path" : "/talks",
+    "parameters" : ["contains", "excludes"]
+  },
+  "sql" : {
+    "database" : "mysql",
+    "query" : "SELECT * FROM talks WHERE title LIKE CONCAT('%','${contains}','%') AND title NOT LIKE CONCAT('%','${excludes}','%');"
+  }
+}
+
