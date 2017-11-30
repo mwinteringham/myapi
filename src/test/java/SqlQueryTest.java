@@ -40,7 +40,11 @@ public class SqlQueryTest{
         } catch (RuntimeException e){
             Approvals.verify(e.getMessage());
         }
+    }
 
+    @Test
+    public void testJSON() throws IOException {
+        verifyQuery("sample.json", "GET", "/sample", null);
     }
 
     private void verifyQuery(String configFile, String httpMethod, String path, HashMap<String, String> params) throws IOException {

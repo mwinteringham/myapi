@@ -1,0 +1,16 @@
+{
+  "results": [
+    {
+      "money": 10.01,
+      "added": "2017-01-19T03:14:08.000Z",
+      "id": 1,
+      "title": "Title text 1"
+    },
+    {
+      "money": 12.31,
+      "added": "2017-11-11T03:14:08.000Z",
+      "id": 2,
+      "title": "An interesting topic 2"
+    }
+  ]
+}

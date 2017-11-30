@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @EnableAutoConfiguration
-public class HelloController {
+public class MyApiController {
 
     @RequestMapping("/**")
     String home(HttpServletRequest request, @RequestParam Map<String,String> allRequestParams) {
@@ -26,7 +26,7 @@ public class HelloController {
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(HelloController.class, args);
+        SpringApplication.run(MyApiController.class, args);
     }
 
 }

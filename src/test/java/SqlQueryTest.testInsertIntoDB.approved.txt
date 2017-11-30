@@ -1,1 +1,3 @@
-QueryResult{ updateCount=1}
+{
+  "updateCount": 1
+}
