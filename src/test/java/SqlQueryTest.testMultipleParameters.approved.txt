@@ -1,25 +1,7 @@
 {
   "results": [
     {
-      "title": "Initial talk"
-    },
-    {
       "title": "My talk title"
-    },
-    {
-      "title": "My talk title"
-    },
-    {
-      "title": "My talk title"
-    },
-    {
-      "title": "Created from request"
-    },
-    {
-      "title": "Created from request"
-    },
-    {
-      "title": "Created from request"
     }
   ]
 }

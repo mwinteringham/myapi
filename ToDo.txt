@@ -1,10 +1,10 @@
 Should have
 1. Automatically load config files
 2. Support multiple database types (MySql, PostGres)
-3. Clean up tests to be more idempotent
 
 Nice to have
 1. Reload config files
 2. What functions do I have?
 3. Downloadable package
 4. Documentation
+5. Modularise databases
