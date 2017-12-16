@@ -27,10 +27,6 @@ public class MyAPIStartup {
         return httpMethod + ":" + path;
     }
 
-    public void loadJsonFromFile(String configFile) throws IOException {
-        loadJson(FileUtils.readFile(configFile));
-    }
-
     public void loadJson(String json) {
         Gson g = new Gson();
         ConnectionDetails connectionDetails = g.fromJson(json, ConnectionDetails.class);
