@@ -1,10 +1,10 @@
 {
   "databases" : [{
     "name" : "mysql",
-    "host" : "localhost:3306",
+    "host" : "127.0.0.1:3306",
     "database" : "talks",
     "username" : "root",
-    "password" : "",
+    "password" : "password",
     "driver" : "jdbc:mysql"
   },{
     "name" : "postgres",

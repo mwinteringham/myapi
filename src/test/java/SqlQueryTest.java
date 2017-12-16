@@ -16,18 +16,12 @@ public class SqlQueryTest extends TestSupport {
 
     @BeforeClass
     public static void populateDB() throws SQLException {
-        String talksQuery  = "CREATE DATABASE talks;" +
-                             " USE talks; " +
-                             "CREATE TABLE talks ( title varchar(255) ); " +
-                             "INSERT INTO talks (title) VALUES ('COOL API DEMO'), ('My talk title');";
+        String query = "INSERT INTO talks (title) VALUES ('COOL API DEMO'), ('My talk title');" +
+                       "INSERT INTO sample VALUES (1, \"Title text 1\", 10.01, '2017-01-19 03:14:07.999999');" +
+                       "INSERT INTO sample VALUES (2, \"An interesting topic 2\", 12.31, '2017-11-11 03:14:07.999999');";
 
-        String sampleQuery = "USE talks;" +
-                             "CREATE TABLE sample ( id int, title varchar(255), money double, added datetime);" +
-                             "INSERT INTO sample VALUES (1, \"Title text 1\", 10.01, '2017-01-19 03:14:07.999999');" +
-                             "INSERT INTO sample VALUES (2, \"An interesting topic 2\", 12.31, '2017-11-11 03:14:07.999999');";
 
-        executeSqlQuery(talksQuery);
-        executeSqlQuery(sampleQuery);
+        executeSqlQuery(query);
     }
 
     @Test
@@ -68,11 +62,12 @@ public class SqlQueryTest extends TestSupport {
 
     @AfterClass
     public static void stripDB() throws SQLException {
-        executeSqlQuery("DROP DATABASE talks;");
+        executeSqlQuery("DELETE from talks;");
+        executeSqlQuery("DELETE from sample;");
     }
 
     private static void executeSqlQuery(String sql) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306?allowMultiQueries=true", "root", "");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/talks?allowMultiQueries=true", "root", "password");
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         preparedStatement.execute();
     }
