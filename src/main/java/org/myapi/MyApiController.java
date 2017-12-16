@@ -17,7 +17,8 @@ public class MyApiController {
     @RequestMapping("/**")
     String home(HttpServletRequest request, @RequestParam Map<String,String> allRequestParams) {
         MyAPIStartup myApi = new MyAPIStartup();
-        myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../add_table.json"));
+        myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../mysql_add_table.json"));
+        myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../postgres_add_table.json"));
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../query_table.json"));
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../config.json"));
         QueryResult queryResult = myApi.call(request.getMethod(), request.getRequestURI(), allRequestParams);

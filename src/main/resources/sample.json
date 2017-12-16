@@ -1,0 +1,11 @@
+{
+  "request" : {
+    "method" : "GET",
+    "path" : "/sample"
+  },
+  "sql" : {
+    "database" : "mysql",
+    "query" : "SELECT * FROM sample"
+  }
+}
+
