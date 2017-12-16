@@ -8,4 +8,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
-      - ./src/test/resources/seed/:/docker-entrypoint-initdb.d
+      - ./src/test/resources/mysql_seed/:/docker-entrypoint-initdb.d
+  postgres:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+          - ./src/test/resources/psql_seed/:/docker-entrypoint-initdb.d

@@ -8,10 +8,10 @@
     "driver" : "jdbc:mysql"
   },{
     "name" : "postgres",
-    "host" : "localhost:5432",
+    "host" : "127.0.0.1:5432",
     "database" : "talks",
-    "username" : "mark",
-    "password" : "",
+    "username" : "postgres",
+    "password" : "password",
     "driver" : "jdbc:postgresql"
   }]
 }

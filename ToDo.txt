@@ -1,6 +1,5 @@
 Should have
 1. Automatically load config files
-2. Improve test idempotency
 
 Nice to have
 1. Reload config files

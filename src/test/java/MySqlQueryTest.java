@@ -11,17 +11,24 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
-public class SqlQueryTest extends TestSupport {
+public class MySqlQueryTest extends TestSupport {
+
+    private static Map<String, String> connectionDetails = new HashMap<String, String>(){{
+        put("connection", "jdbc:mysql://localhost:3306/talks?allowMultiQueries=true");
+        put("username", "root");
+        put("password", "password");
+    }};
 
     @BeforeClass
     public static void populateDB() throws SQLException {
         String query = "INSERT INTO talks (title) VALUES ('COOL API DEMO'), ('My talk title');" +
-                       "INSERT INTO sample VALUES (1, \"Title text 1\", 10.01, '2017-01-19 03:14:07.999999');" +
-                       "INSERT INTO sample VALUES (2, \"An interesting topic 2\", 12.31, '2017-11-11 03:14:07.999999');";
+                       "INSERT INTO sample VALUES (1, 'Title text 1', 10.01, '2017-01-19 03:14:07.999999');" +
+                       "INSERT INTO sample VALUES (2, 'An interesting topic 2', 12.31, '2017-11-11 03:14:07.999999');";
 
 
-        executeSqlQuery(query);
+        executeSqlQuery(connectionDetails, query);
     }
 
     @Test
@@ -40,7 +47,7 @@ public class SqlQueryTest extends TestSupport {
             put("excludes", "demo");
         }};
 
-        verifyQuery("query_table.json", "GET", "/talk", parameters);
+        verifyQuery("mysql_query_table.json", "GET", "/talk", parameters);
     }
 
     @Test
@@ -62,14 +69,7 @@ public class SqlQueryTest extends TestSupport {
 
     @AfterClass
     public static void stripDB() throws SQLException {
-        executeSqlQuery("DELETE from talks;");
-        executeSqlQuery("DELETE from sample;");
-    }
-
-    private static void executeSqlQuery(String sql) throws SQLException {
-        Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/talks?allowMultiQueries=true", "root", "password");
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.execute();
+        executeSqlQuery(connectionDetails, "DELETE from talks; DELETE from sample;");
     }
 
 }
