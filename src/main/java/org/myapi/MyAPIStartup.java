@@ -8,6 +8,7 @@ import org.myapi.models.Request;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MyAPIStartup {
@@ -45,10 +46,12 @@ public class MyAPIStartup {
     }
 
     private void addDatabases(ConnectionDetails connectionDetails) {
-        DatabaseConfig database = connectionDetails.getDatabase();
+        List<DatabaseConfig> configDatabases = connectionDetails.getDatabases();
 
-        if(database != null){
-            databases.put(database.getName(), database);
+        if(configDatabases != null){
+            for(int i = 0; i < configDatabases.size(); i++){
+                databases.put(configDatabases.get(i).getName(), configDatabases.get(i));
+            }
         }
     }
 }

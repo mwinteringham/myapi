@@ -1,6 +1,6 @@
 Should have
 1. Automatically load config files
-2. Support multiple database types (MySql, PostGres)
+2. Improve test idempotency
 
 Nice to have
 1. Reload config files

@@ -1,0 +1,12 @@
+{
+  "request" : {
+    "method" : "POST",
+    "path" : "/talk",
+    "parameters" : ["title"]
+  },
+  "sql" : {
+    "database" : "postgres",
+    "query" : "INSERT INTO talks (title) VALUES (${title});"
+  }
+}
+

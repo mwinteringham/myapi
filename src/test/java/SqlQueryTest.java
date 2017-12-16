@@ -1,11 +1,9 @@
-import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.myapi.MyAPIStartup;
-import org.myapi.QueryResult;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,7 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class SqlQueryTest{
+public class SqlQueryTest extends TestSupport {
 
     @BeforeClass
     public static void populateDB() throws SQLException {
@@ -38,7 +36,7 @@ public class SqlQueryTest{
             put("title", "Cool API Demo!");
         }};
 
-        verifyQuery("add_table.json", "POST", "/talk", parameters);
+        verifyQuery("mysql_add_table.json", "POST", "/talk", parameters);
     }
 
     @Test
@@ -71,15 +69,6 @@ public class SqlQueryTest{
     @AfterClass
     public static void stripDB() throws SQLException {
         executeSqlQuery("DROP DATABASE talks;");
-    }
-
-    private void verifyQuery(String configFile, String httpMethod, String path, HashMap<String, String> params) throws IOException {
-        MyAPIStartup myApi = new MyAPIStartup();
-        myApi.loadJson(FileUtils.readFromClassPath(getClass(), "config.json"));
-        myApi.loadJson(FileUtils.readFromClassPath(getClass(), configFile));
-        QueryResult queryResult = myApi.call(httpMethod, path, params);
-
-        Approvals.verify(queryResult.toString());
     }
 
     private static void executeSqlQuery(String sql) throws SQLException {

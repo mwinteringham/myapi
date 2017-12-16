@@ -1,10 +1,12 @@
 package org.myapi.models;
 
+import java.util.List;
+
 public class ConnectionDetails {
 
     private Request request;
     private SqlDetails sql;
-    private DatabaseConfig database;
+    private List<DatabaseConfig> databases;
 
     public Request getRequest() {
         return request;
@@ -22,11 +24,11 @@ public class ConnectionDetails {
         this.sql = sql;
     }
 
-    public DatabaseConfig getDatabase() {
-        return database;
+    public List<DatabaseConfig> getDatabases() {
+        return databases;
     }
 
-    public void setDatabase(DatabaseConfig database) {
-        this.database = database;
+    public void setDatabase(List<DatabaseConfig> database) {
+        this.databases = database;
     }
 }
