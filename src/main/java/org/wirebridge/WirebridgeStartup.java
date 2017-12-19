@@ -1,10 +1,13 @@
 package org.wirebridge;
 
 import com.google.gson.Gson;
+import com.spun.util.io.FileUtils;
 import org.wirebridge.models.ConnectionDetails;
 import org.wirebridge.models.DatabaseConfig;
 import org.wirebridge.models.Request;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +16,18 @@ public class WirebridgeStartup {
 
     private HashMap<String, Command> call = new HashMap<String, Command>();
     private HashMap<String, DatabaseConfig> databases = new HashMap<String, DatabaseConfig>();
+
+    public WirebridgeStartup() throws IOException {
+        String pathname = System.getProperty("user.dir") + "/mappings";
+
+        File f = new File(pathname);
+        File[] matchingFiles = f.listFiles((dir, name) -> name.endsWith(".json"));
+
+        for(File file : matchingFiles){
+            System.out.println("FOUND: " + file.getPath());
+            loadJson(FileUtils.readFile(file));
+        }
+    }
 
     public QueryResult call(String httpMethod, String path, Map<String, String> params) {
         String pathIdentifier = getPathIdentifier(httpMethod, path);

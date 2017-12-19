@@ -1,9 +1,4 @@
-Should have
-1. Automatically load config files
-
-Nice to have
-1. Reload config files
-2. What functions do I have?
-3. Downloadable package
-4. Documentation
-5. Modularise databases
+1. Pull out Approval tests from src OR get ApprovalTests on Maven
+2. Reload config files
+3. What functions do I have?
+4. Modularise databases

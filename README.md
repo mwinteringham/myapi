@@ -9,7 +9,7 @@ If you would like Wirebridge to support another database or activity then please
 
 ## Using Wirebridge
 
-Wirebridge is configured by JSON files to allow you to tie HTTP requests to database queries. To get started you will need to create two JSON files.
+Wirebridge is configured by JSON files to allow you to tie HTTP requests to database queries. To get started you will need to create two JSON files within a folder named ```mappings``` on the same level as the JAR.
 
 ### config.json
 
@@ -74,5 +74,9 @@ Once configured, simply send an HTTP request with your favourite HTTP library to
 ## Development
 
 To develop Wirebridge further you will need to go through a couple of initial steps:
-1. Add the approval test jar file to the project as a dependency. Approval test is responsible for the assertions in the automated checks as well as the reading of JSON files within Wirebridge.  
+1. Add the ApprovalTest jar file to your local maven repo using the following command in the root project folder:
+
+```mvn install:install-file -Dfile=./lib/approvaltests.jar -DgroupId=org.approvaltests -DartifactId=approvaltests -Dversion=0.0.19 -Dpackaging=jar``` 
+
+Approval test is responsible for the assertions in the automated checks as well as the reading of JSON files within Wirebridge.  
 2. Test databases are managed by Docker. Therefore before running any checks, start up the test databases using ```docker-compose up```.
