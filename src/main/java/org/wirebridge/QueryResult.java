@@ -1,4 +1,4 @@
-package org.myapi;
+package org.wirebridge;
 
 import com.google.gson.GsonBuilder;
 import com.spun.util.ObjectUtils;

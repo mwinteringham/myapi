@@ -1,7 +1,7 @@
 import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
-import org.myapi.MyAPIStartup;
-import org.myapi.QueryResult;
+import org.wirebridge.WirebridgeStartup;
+import org.wirebridge.QueryResult;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import java.util.Map;
 public class TestSupport {
 
     protected void verifyQuery(String configFile, String httpMethod, String path, HashMap<String, String> params) throws IOException {
-        MyAPIStartup myApi = new MyAPIStartup();
+        WirebridgeStartup myApi = new WirebridgeStartup();
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), "config.json"));
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), configFile));
         QueryResult queryResult = myApi.call(httpMethod, path, params);

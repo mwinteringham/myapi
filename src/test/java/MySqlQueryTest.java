@@ -3,12 +3,9 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.myapi.MyAPIStartup;
+import org.wirebridge.WirebridgeStartup;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +50,7 @@ public class MySqlQueryTest extends TestSupport {
     @Test
     public void testErrors() throws IOException {
         try{
-            MyAPIStartup myApi = new MyAPIStartup();
+            WirebridgeStartup myApi = new WirebridgeStartup();
             myApi.call("myMethod", "route", null);
 
             Assert.fail();

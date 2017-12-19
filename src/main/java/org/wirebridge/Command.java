@@ -1,8 +1,8 @@
-package org.myapi;
+package org.wirebridge;
 
 import com.spun.util.ObjectUtils;
-import org.myapi.models.ConnectionDetails;
-import org.myapi.models.DatabaseConfig;
+import org.wirebridge.models.ConnectionDetails;
+import org.wirebridge.models.DatabaseConfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

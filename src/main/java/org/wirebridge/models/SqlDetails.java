@@ -1,10 +1,9 @@
-package org.myapi.models;
+package org.wirebridge.models;
 
 import org.lambda.functions.Function1;
-import org.myapi.Query;
+import org.wirebridge.Query;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

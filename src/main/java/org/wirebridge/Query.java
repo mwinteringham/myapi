@@ -1,4 +1,4 @@
-package org.myapi;
+package org.wirebridge;
 
 public class Query {
 

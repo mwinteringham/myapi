@@ -1,4 +1,4 @@
-package org.myapi.models;
+package org.wirebridge.models;
 
 public class DatabaseConfig {
 

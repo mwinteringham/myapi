@@ -1,4 +1,4 @@
-package org.myapi;
+package org.wirebridge;
 
 import com.spun.util.io.FileUtils;
 import org.springframework.boot.SpringApplication;
@@ -12,11 +12,11 @@ import java.util.Map;
 
 @RestController
 @EnableAutoConfiguration
-public class MyApiController {
+public class WirebridgeController {
 
     @RequestMapping("/**")
     String home(HttpServletRequest request, @RequestParam Map<String,String> allRequestParams) {
-        MyAPIStartup myApi = new MyAPIStartup();
+        WirebridgeStartup myApi = new WirebridgeStartup();
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../mysql_add_table.json"));
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../postgres_add_table.json"));
         myApi.loadJson(FileUtils.readFromClassPath(getClass(), "../../query_table.json"));
@@ -27,7 +27,7 @@ public class MyApiController {
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(MyApiController.class, args);
+        SpringApplication.run(WirebridgeController.class, args);
     }
 
 }
