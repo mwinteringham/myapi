@@ -73,10 +73,8 @@ Once configured, simply send an HTTP request with your favourite HTTP library to
 
 ## Development
 
-To develop Wirebridge further you will need to go through a couple of initial steps:
-1. Add the ApprovalTest jar file to your local maven repo using the following command in the root project folder:
+Approval test is responsible for the assertions in the automated checks as well as the reading of JSON files within Wirebridge.
 
-```mvn install:install-file -Dfile=./lib/approvaltests.jar -DgroupId=org.approvaltests -DartifactId=approvaltests -Dversion=0.0.19 -Dpackaging=jar``` 
+To develop Wirebridge further you will need to:
 
-Approval test is responsible for the assertions in the automated checks as well as the reading of JSON files within Wirebridge.  
-2. Test databases are managed by Docker. Therefore before running any checks, start up the test databases using ```docker-compose up```.
+1. Test databases are managed by Docker. Therefore before running any checks, start up the test databases using ```docker-compose up```.
