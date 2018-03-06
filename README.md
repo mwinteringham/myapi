@@ -1,5 +1,5 @@
 # Wirebridge
-Wirebridge is a configurable API that helps teams wrap complex data creation takes around programmable HTTP requests. 
+Wirebridge is a configurable API that helps teams abstract complex data creation tasks behind programmable HTTP requests.
 
 Currently, Wirebridge supports:
 * MySQL
