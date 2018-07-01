@@ -1,3 +1,4 @@
+import org.h2.tools.Server;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -16,6 +17,8 @@ public class H2QueryTest extends TestSupport {
 
     @BeforeClass
     public static void populateDB() throws SQLException {
+        Server.createTcpServer("-tcpPort", "9095").start();
+
         String query = "CREATE table talks ( title varchar(255) );" +
                        "CREATE table sample ( id int, title varchar(255), money double, added datetime);" +
                        "INSERT INTO talks (title) VALUES ('COOL API DEMO'), ('My talk title');" +
