@@ -17,9 +17,10 @@ public class WirebridgeStartup {
     private HashMap<String, Command> call = new HashMap<String, Command>();
     private HashMap<String, DatabaseConfig> databases = new HashMap<String, DatabaseConfig>();
 
-    public WirebridgeStartup() throws IOException {
-        String pathname = System.getProperty("user.dir") + "/mappings";
+    public WirebridgeStartup() {
+    }
 
+    public WirebridgeStartup(String pathname) throws IOException {
         File f = new File(pathname);
         File[] matchingFiles = f.listFiles((dir, name) -> name.endsWith(".json"));
 

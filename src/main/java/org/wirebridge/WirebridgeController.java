@@ -22,7 +22,7 @@ public class WirebridgeController {
     }
 
     public static void main(String[] args) throws Exception {
-        wirebridge = new WirebridgeStartup();
+        wirebridge = new WirebridgeStartup(System.getProperty("user.dir") + "/mappings");
         SpringApplication.run(WirebridgeController.class, args);
     }
 
