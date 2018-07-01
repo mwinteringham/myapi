@@ -10,7 +10,11 @@ public class DatabaseConfig {
     private String name;
 
     public String getUrl() {
-        return String.format("%s://%s/%s", getDriver(), getHost(), getDatabase());
+        if(driver.contains("h2")){
+            return String.format("%s:%s", getDriver(), getDatabase());
+        } else {
+            return String.format("%s://%s/%s", getDriver(), getHost(), getDatabase());
+        }
     }
 
     public String getPassword() {

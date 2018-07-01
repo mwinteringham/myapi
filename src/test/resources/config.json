@@ -13,5 +13,12 @@
     "username" : "postgres",
     "password" : "password",
     "driver" : "jdbc:postgresql"
+  },{
+    "name" : "h2-mem",
+    "host" : "127.0.0.1:5432",
+    "database" : "talks",
+    "username" : "h2",
+    "password" : "password",
+    "driver" : "jdbc:h2:mem"
   }]
 }
