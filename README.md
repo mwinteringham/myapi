@@ -4,6 +4,7 @@ Wirebridge is a configurable API that helps teams abstract complex data creation
 Currently, Wirebridge supports:
 * MySQL
 * Postgres
+* H2 (In memory only)
 
 If you would like Wirebridge to support another database or activity then please raise [an issue](https://github.com/mwinteringham/wirebridge/issues/new) or check out details below on how to get setup with developing Wirebridge further.
 
