@@ -1,4 +1,4 @@
-package org.wirebridge;
+package org.wirebridge.db;
 
 import com.google.gson.GsonBuilder;
 import com.spun.util.ObjectUtils;

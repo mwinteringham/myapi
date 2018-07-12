@@ -1,7 +1,6 @@
 package org.wirebridge.models;
 
 import org.lambda.functions.Function1;
-import org.wirebridge.Query;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;

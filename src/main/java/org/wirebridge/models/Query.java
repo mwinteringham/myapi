@@ -1,4 +1,4 @@
-package org.wirebridge;
+package org.wirebridge.models;
 
 public class Query {
 

@@ -1,7 +1,7 @@
 import com.spun.util.io.FileUtils;
 import org.approvaltests.Approvals;
-import org.wirebridge.WirebridgeStartup;
-import org.wirebridge.QueryResult;
+import org.wirebridge.api.WirebridgeStartup;
+import org.wirebridge.db.QueryResult;
 
 import java.io.IOException;
 import java.sql.Connection;

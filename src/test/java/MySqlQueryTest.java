@@ -3,7 +3,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.wirebridge.WirebridgeStartup;
+import org.wirebridge.api.WirebridgeStartup;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -1,7 +1,9 @@
-package org.wirebridge;
+package org.wirebridge.api;
 
 import com.google.gson.Gson;
 import com.spun.util.io.FileUtils;
+import org.wirebridge.db.Command;
+import org.wirebridge.db.QueryResult;
 import org.wirebridge.models.ConnectionDetails;
 import org.wirebridge.models.DatabaseConfig;
 import org.wirebridge.models.Request;
@@ -11,22 +13,25 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class WirebridgeStartup {
 
-    private HashMap<String, Command> call = new HashMap<String, Command>();
-    private HashMap<String, DatabaseConfig> databases = new HashMap<String, DatabaseConfig>();
+    private HashMap<String, Command> call = new HashMap<>();
+    private HashMap<String, DatabaseConfig> databases = new HashMap<>();
 
-    public WirebridgeStartup() {
-    }
+    public WirebridgeStartup() throws IOException {
+        String p = getMappingsFolderPath();
 
-    public WirebridgeStartup(String pathname) throws IOException {
-        File f = new File(pathname);
-        File[] matchingFiles = f.listFiles((dir, name) -> name.endsWith(".json"));
+        if(getMappingsFolderPath() != null){
+            File f = new File(p);
+            File[] matchingFiles = f.listFiles((dir, name) -> name.endsWith(".json"));
 
-        for(File file : matchingFiles){
-            System.out.println("FOUND: " + file.getPath());
-            loadJson(FileUtils.readFile(file));
+            for(File file : matchingFiles){
+                System.out.println("Loading: " + file.getPath());
+                loadJson(FileUtils.readFile(file));
+            }
         }
     }
 
@@ -48,8 +53,18 @@ public class WirebridgeStartup {
         addRequest(connectionDetails, command);
     }
 
-    private String getPathIdentifier(String httpMethod, String path) {
-        return httpMethod + ":" + path;
+    private String getMappingsFolderPath() {
+        String path = WirebridgeController.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+        path = path.substring(0, path.length() - 1);
+
+        Pattern pattern = Pattern.compile(":(.*)\\/");
+        Matcher matcher = pattern.matcher(path);
+
+        if (matcher.find()) {
+            return matcher.group(1) + "/mappings/";
+        }
+
+        return null;
     }
 
     private void addRequest(ConnectionDetails connectionDetails, Command command) {
@@ -64,9 +79,14 @@ public class WirebridgeStartup {
         List<DatabaseConfig> configDatabases = connectionDetails.getDatabases();
 
         if(configDatabases != null){
-            for(int i = 0; i < configDatabases.size(); i++){
-                databases.put(configDatabases.get(i).getName(), configDatabases.get(i));
+            for (DatabaseConfig configDatabase : configDatabases) {
+                databases.put(configDatabase.getName(), configDatabase);
             }
         }
     }
+
+    private String getPathIdentifier(String httpMethod, String path) {
+        return httpMethod + ":" + path;
+    }
+
 }

@@ -1,6 +1,7 @@
-package org.wirebridge;
+package org.wirebridge.db;
 
 import com.spun.util.ObjectUtils;
+import org.wirebridge.models.Query;
 import org.wirebridge.models.ConnectionDetails;
 import org.wirebridge.models.DatabaseConfig;
 
