@@ -1,4 +1,2 @@
-1. Pull out Approval tests from src OR get ApprovalTests on Maven
-2. Reload config files
-3. What functions do I have?
-4. Modularise databases
+1. Reload config files
+2. Modularise databases

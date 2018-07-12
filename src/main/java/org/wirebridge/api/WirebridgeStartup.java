@@ -21,17 +21,27 @@ public class WirebridgeStartup {
     private HashMap<String, Command> call = new HashMap<>();
     private HashMap<String, DatabaseConfig> databases = new HashMap<>();
 
-    public WirebridgeStartup() throws IOException {
+    public WirebridgeStartup(){}
+
+    public void getMappings() throws IOException {
         String p = getMappingsFolderPath();
 
-        if(getMappingsFolderPath() != null){
-            File f = new File(p);
-            File[] matchingFiles = f.listFiles((dir, name) -> name.endsWith(".json"));
+        File f = new File(p);
+        File[] matchingFiles = f.listFiles((dir, name) -> name.endsWith(".json"));
 
-            for(File file : matchingFiles){
-                System.out.println("Loading: " + file.getPath());
-                loadJson(FileUtils.readFile(file));
+        if(matchingFiles != null){
+            if(matchingFiles.length > 0 ){
+                for(File file : matchingFiles){
+                    System.out.println("Loading: " + file.getPath());
+                    loadJson(FileUtils.readFile(file));
+                }
+            } else {
+                System.out.println("ERROR: Wirebridge unable to find any .json mappings within the mappings folder!");
+                throw new RuntimeException();
             }
+        } else {
+            System.out.println("ERROR: Wirebridge was either unable to find the mappings folder!");
+            throw new RuntimeException();
         }
     }
 
@@ -60,11 +70,8 @@ public class WirebridgeStartup {
         Pattern pattern = Pattern.compile(":(.*)\\/");
         Matcher matcher = pattern.matcher(path);
 
-        if (matcher.find()) {
-            return matcher.group(1) + "/mappings/";
-        }
-
-        return null;
+        matcher.find();
+        return matcher.group(1) + "/mappings/";
     }
 
     private void addRequest(ConnectionDetails connectionDetails, Command command) {

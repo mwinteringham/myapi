@@ -28,6 +28,7 @@ public class WirebridgeController {
 
     public static void main(String[] args) throws Exception {
         wirebridge = new WirebridgeStartup();
+        wirebridge.getMappings();
 
         SpringApplication.run(WirebridgeController.class, args);
     }
